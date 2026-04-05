@@ -1,0 +1,153 @@
+name: sharding-repl-cache
+
+services:
+  # Приложение
+  pymongo_api:
+    container_name: pymongo_api
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - mongos
+    ports:
+      - "8089:8080"
+    environment:
+      MONGODB_URL: "mongodb://mongos:27017"
+      MONGODB_DATABASE_NAME: "somedb"
+      REDIS_URL: "redis://redis:6379"  # ← добавьте эту строку
+    networks:
+      - sharding-network
+
+  # Config Server (Replica Set из 3 узлов)
+  config-srv1:
+    container_name: config-srv1
+    image: mongo:latest
+    command: mongod --configsvr --replSet configReplSet --port 27017 --bind_ip_all
+    networks:
+      - sharding-network
+    volumes:
+      - config_data1:/data/db
+
+  config-srv2:
+    container_name: config-srv2
+    image: mongo:latest
+    command: mongod --configsvr --replSet configReplSet --port 27017 --bind_ip_all
+    networks:
+      - sharding-network
+    volumes:
+      - config_data2:/data/db
+
+  config-srv3:
+    container_name: config-srv3
+    image: mongo:latest
+    command: mongod --configsvr --replSet configReplSet --port 27017 --bind_ip_all
+    networks:
+      - sharding-network
+    volumes:
+      - config_data3:/data/db
+
+  # Router
+  mongos:
+    container_name: mongos
+    image: mongo:latest
+    command: mongos --configdb configReplSet/config-srv1:27017,config-srv2:27017,config-srv3:27017 --bind_ip_all --port 27017
+    ports:
+      - 27020:27017
+    depends_on:
+      - config-srv1
+      - config-srv2
+      - config-srv3
+      - shard1-1
+      - shard1-2
+      - shard1-3
+      - shard2-1
+      - shard2-2
+      - shard2-3
+    networks:
+      - sharding-network
+
+  # ==================== SHARD 1 (Replica Set из 3 узлов) ====================
+  shard1-1:
+    container_name: shard1-1
+    image: mongo:latest
+    command: mongod --shardsvr --replSet shard1ReplSet --port 27018 --bind_ip_all
+    networks:
+      - sharding-network
+    volumes:
+      - shard1-1_data:/data/db
+
+  shard1-2:
+    container_name: shard1-2
+    image: mongo:latest
+    command: mongod --shardsvr --replSet shard1ReplSet --port 27018 --bind_ip_all
+    networks:
+      - sharding-network
+    volumes:
+      - shard1-2_data:/data/db
+
+  shard1-3:
+    container_name: shard1-3
+    image: mongo:latest
+    command: mongod --shardsvr --replSet shard1ReplSet --port 27018 --bind_ip_all
+    networks:
+      - sharding-network
+    volumes:
+      - shard1-3_data:/data/db
+
+  # ==================== SHARD 2 (Replica Set из 3 узлов) ====================
+  shard2-1:
+    container_name: shard2-1
+    image: mongo:latest
+    command: mongod --shardsvr --replSet shard2ReplSet --port 27019 --bind_ip_all
+    networks:
+      - sharding-network
+    volumes:
+      - shard2-1_data:/data/db
+
+  shard2-2:
+    container_name: shard2-2
+    image: mongo:latest
+    command: mongod --shardsvr --replSet shard2ReplSet --port 27019 --bind_ip_all
+    networks:
+      - sharding-network
+    volumes:
+      - shard2-2_data:/data/db
+
+  shard2-3:
+    container_name: shard2-3
+    image: mongo:latest
+    command: mongod --shardsvr --replSet shard2ReplSet --port 27019 --bind_ip_all
+    networks:
+      - sharding-network
+    volumes:
+      - shard2-3_data:/data/db
+
+  # Redis для кеширования
+  redis:
+    image: redis:7-alpine
+    container_name: redis-cache
+    ports:
+      - "6379:6379"
+    networks:
+      - sharding-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+networks:
+  sharding-network:
+    driver: bridge
+
+volumes:
+  config_data1:
+  config_data2:
+  config_data3:
+  shard1-1_data:
+  shard1-2_data:
+  shard1-3_data:
+  shard2-1_data:
+  shard2-2_data:
+  shard2-3_data:
