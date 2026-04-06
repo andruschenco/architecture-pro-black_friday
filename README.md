@@ -45,3 +45,7 @@ curl --silent http://ifconfig.me
 
 ### Задание 5. Service Discovery и балансировка с API Gateway
  - [Пятый вариант Схемы](task5.drawio)
+
+### Задание 6. CDN
+- [ вариант Схемы](task6.drawio)
+- Практика ![Task6-praktika.png](Task6-praktika.png)
