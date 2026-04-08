@@ -1,6 +1,6 @@
-<mxfile host="drawio-plugin" modified="2026-04-05T20:49:29.800Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36" etag="aAR9JKNviQA_7ahYYl9Z" version="22.1.22" type="embed">
+<mxfile host="drawio-plugin" modified="2026-04-06T21:31:49.106Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36" etag="d9eUlNDZHSKA-oRldPnL" version="22.1.22" type="embed">
   <diagram name="Page-1" id="-H_mtQnk-PTXWXPvYvuk">
-    <mxGraphModel dx="2847" dy="780" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+    <mxGraphModel dx="1439" dy="910" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -114,28 +114,13 @@
         <mxCell id="41" style="edgeStyle=entityRelationEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0;exitDx=0;exitDy=82.5;exitPerimeter=0;entryX=1;entryY=0;entryDx=0;entryDy=82.5;entryPerimeter=0;startArrow=classicThin;startFill=1;" parent="1" source="22" target="20" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="45" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=3;strokeColor=#000000;fillColor=#000000;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="46" target="3">
+        <mxCell id="45" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=3;strokeColor=#000000;fillColor=#000000;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="46" target="3" edge="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="300" y="135" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="46" value="Клиенты" style="shape=cloud;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontStyle=1" vertex="1" parent="1">
+        <mxCell id="46" value="Клиенты" style="shape=cloud;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontStyle=1" parent="1" vertex="1">
           <mxGeometry x="260" y="100" width="80" height="60" as="geometry" />
-        </mxCell>
-        <mxCell id="47" value="Shard 1 - Master" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1" vertex="1" parent="1">
-          <mxGeometry x="-170" y="610" width="100" height="90" as="geometry" />
-        </mxCell>
-        <mxCell id="48" value="Shard 1 - Slave" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
-          <mxGeometry x="-310" y="610" width="100" height="90" as="geometry" />
-        </mxCell>
-        <mxCell id="49" value="Shard 1 - Slave" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
-          <mxGeometry x="-20" y="610" width="100" height="90" as="geometry" />
-        </mxCell>
-        <mxCell id="50" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1;strokeColor=#82b366;dashed=1;" edge="1" parent="1" source="47" target="48">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="51" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1;strokeColor=#82b366;dashed=1;" edge="1" parent="1" source="47" target="49">
-          <mxGeometry relative="1" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
